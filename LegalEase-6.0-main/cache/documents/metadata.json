@@ -1,0 +1,18 @@
+{
+  "7027002320fd12753e7b7d601a01b541ccd5c3809a44694126216c68f0ff9227": {
+    "processing_type": "extract_key_info",
+    "created_at": 1758715389.0053961,
+    "last_accessed": 1758734896.4157307,
+    "access_count": 15,
+    "size": 442,
+    "content_hash": "f768ca7ba6176cc8"
+  },
+  "c6631d3de19b0986560b673de2c45901621820d22f16061f1f0a384906c39683": {
+    "processing_type": "extract_key_info",
+    "created_at": 1758719393.0282538,
+    "last_accessed": 1758719393.0282538,
+    "access_count": 1,
+    "size": 456,
+    "content_hash": "65886e2b176aa037"
+  }
+}

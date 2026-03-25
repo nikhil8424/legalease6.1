@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legalese - Your Legal Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+    <style>
+        :root {
+            --primary-color: #4C6FFF;
+            --primary-dark: #3a5bd9;
+            --secondary-color: #2D2D2D;
+            --background-color: #F8F9FF;
+            --text-color: #1A1A1A;
+            --text-light: #666666;
+            --white: #FFFFFF;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        /* Dark mode variables */
+        [data-theme="dark"] {
+            --primary-color: #6B8AFF;
+            --primary-dark: #5a7ae6;
+            --secondary-color: #E0E0E0;
+            --background-color: #1A1A1A;
+            --text-color: #FFFFFF;
+            --text-light: #B0B0B0;
+            --white: #2D2D2D;
+            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navbar Styles */
+        .landing-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a2634 100%);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--white);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            margin: 0;
+            font-weight: 500;
+            color: var(--white);
+            transition: var(--transition);
+            position: relative;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--white);
+            transition: var(--transition);
+            opacity: 0.8;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 8px;
+            color: var(--white);
+            font-weight: 500;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .nav-links button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            font-size: 20px;
+            padding: 8px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(30deg);
+        }
+
+        @media (max-width: 768px) {
+            .landing-navbar {
+                padding: 15px 20px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .nav-links a {
+                padding: 6px 12px;
+                font-size: 14px;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 120px 50px 80px;
+            gap: 100px;
+            background: linear-gradient(135deg, var(--white) 0%, var(--background-color) 100%);
+        }
+
+        .hero-text {
+            max-width: 50%;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+        }
+
+        .hero button {
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(76, 111, 255, 0.3);
+        }
+
+        .hero button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 111, 255, 0.4);
+        }
+
+        /* Info Card */
+        .info-card-container {
+            padding: 80px 20px;
+            background: var(--white);
+        }
+
+        .info-card {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .info-card h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .info-card p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 20px;
+            background: var(--background-color);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: var(--secondary-color);
+        }
+
+        .features-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            padding: 40px;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+        }
+
+        /* Main Content Area */
+        .app-container {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin: 40px;
+            overflow: hidden;
+        }
+
+        .app-header {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .app-header h1 {
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        .main-content {
+            display: flex;
+            gap: 20px;
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .left-pane {
+            flex: 1;
+            padding: 30px;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .right-pane {
+            flex: 1;
+            padding: 30px;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .upload-section {
+            margin-bottom: 20px;
+        }
+
+        /* Remove preview-related CSS */
+        #extracted_text {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: none;
+            background: #f8f9ff;
+        }
+
+        .right-pane h1 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+
+        .right-pane form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .right-pane label {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .right-pane select,
+        .right-pane input[type="file"],
+        .right-pane textarea {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .right-pane select:focus,
+        .right-pane input[type="file"]:focus,
+        .right-pane textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .right-pane button {
+            padding: 12px 24px;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .right-pane button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .result-box {
+            background: var(--white);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-top: 20px;
+        }
+
+        /* Chatbot Styles */
+        .chatbot-container {
+            flex: 1;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            display: flex;
+             flex-direction: column;
+            max-height: 600px;
+        }
+
+        .chat-area {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9ff;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+
+        .message {
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            border-radius: var(--border-radius);
+            max-width: 80%;
+        }
+
+        .user-message {
+            background: var(--primary-color);
+            color: var(--white);
+            margin-left: auto;
+        }
+
+        .bot-message {
+            background: var(--white);
+            color: var(--text-color);
+            box-shadow: var(--box-shadow);
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 20px;
+            background: var(--white);
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            margin-right: 10px;
+        }
+
+        .chat-input button {
+            padding: 12px 24px;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chat-input button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Footer */
+        .landing-footer {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 40px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero, .info-card, .feature-card {
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Metrics Section */
+        .metrics {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            padding: 100px 20px;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .metric-card {
+            padding: 30px;
+            background: var(--background-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            min-width: 200px;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .metric-value {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .metric-label {
+            font-size: 18px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact {
+            display: flex;
+            justify-content: center;
+            padding: 100px 20px;
+            gap: 80px;
+            background: var(--background-color);
+        }
+
+        .contact-info {
+            max-width: 400px;
+        }
+
+        .contact-info h3 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+        }
+
+        .contact-text {
+            font-size: 16px;
+            color: var(--text-color);
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            width: 400px;
+        }
+
+        .contact-form h4 {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Button Styles */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .action-button {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--white);
+            background: var(--primary-color);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .action-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .action-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(76, 111, 255, 0.3);
+        }
+
+        .action-button:hover::before {
+            transform: translateX(100%);
+        }
+
+        .action-button i {
+            font-size: 18px;
+        }
+
+        .upload-button {
+            background: var(--primary-color);
+        }
+
+        .identify-button {
+            background: #4CAF50;
+        }
+
+        .key-points-button {
+            background: #2196F3;
+        }
+
+        .plain-language-button {
+            background: #9C27B0;
+        }
+
+        .summary-button {
+            background: #FF9800;
+        }
+
+        .action-button:active {
+            transform: translateY(0);
+        }
+
+        /* Privacy Policy Modal Styles */
+        .privacy-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            backdrop-filter: blur(5px);
+        }
+
+        .privacy-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            max-width: 800px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .privacy-content h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .privacy-content p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .privacy-content ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .privacy-content li {
+            margin-bottom: 10px;
+        }
+
+        .accept-button {
+            display: block;
+            width: 200px;
+            margin: 30px auto 0;
+            padding: 15px 30px;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .accept-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .modal-active {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="privacy-modal">
+        <div class="privacy-content">
+            <h2>🛡️ LegalEase – User Data & Privacy Policy</h2>
+            <p>By uploading a document to LegalEase, you acknowledge and agree to the following terms:</p>
+            
+            <h3>Data Confidentiality</h3>
+            <p>All uploaded documents are handled with strict confidentiality. No files or information will be shared with third parties without explicit user consent.</p>
+            
+            <h3>Purpose of Data Usage</h3>
+            <p>Uploaded content may be used—anonymously and without personally identifiable information—for the sole purpose of improving and refining the AI models powering LegalEase.</p>
+            
+            <h3>Data Storage</h3>
+            <p>Documents are stored securely for processing and may be retained for further analysis or training, unless a user explicitly requests deletion.</p>
+            
+            <h3>User Rights</h3>
+            <p>Users have the right to request deletion of their data or opt out of AI training use at any time by contacting: guptanikhil8424@gmail.com.</p>
+            
+            <h3>Informed Consent</h3>
+            <p>By proceeding with the upload, you provide informed consent for LegalEase to process your document using AI technologies and, where applicable, utilize anonymized data to enhance system performance.</p>
+            
+            <button class="accept-button" onclick="acceptPrivacyPolicy()">Accept</button>
+        </div>
+    </div>
+
+    <!-- Landing Page Content -->
+    <nav class="landing-navbar">
+        <div class="logo"><i class="fas fa-balance-scale"></i> <strong>Legalese</strong></div>
+        <div class="nav-links">
+            <a href="{{ url_for('features') }}">Features</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <a href="#app-content"><button style="background:#4C6FFF;color:#fff;border:none;padding:8px 16px;border-radius:6px;">Get Started</button></a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Scan. Identify. Simplify. Solve...</h1>
+            <p>Turn complex legal documents into clear, simple insights – all in just a few clicks!</p>
+            <button onclick="document.getElementById('app-content').scrollIntoView({behavior: 'smooth'})">Get Started</button>
+        </div>
+        <img src="../static/hero-image.png" 
+             alt="Legal Illustration" 
+             style="width: 500px; height: auto;"
+             onerror="this.onerror=null; this.src='hero-image.png'; console.log('Image failed to load, trying alternative path')" />
+    </section>
+
+    <section class="info-card-container">
+        <div class="info-card">
+            <h3>Smart Legal Insights</h3>
+            <p>Get simplified, AI-powered summaries and key highlights from complex legal documents – instantly.</p>
+            <button style="margin-top: 20px; padding: 10px 20px; border: none; background: #4C6FFF; color: white; border-radius: 8px;">Try Now</button>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2>These are just a few features you'll get using Legalese.</h2>
+        <div class="features-wrapper">
+            <div class="feature-card">
+                <h3>Fast and Accurate Processing</h3>
+                <p>Quickly upload and analyze legal documents in seconds. Say goodbye to time-consuming reviews.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Simple. Clean. Efficient.</h3>
+                <p>Enjoy a clutter-free legal experience designed to perform seamlessly on your device.</p>
+            </div>
+            <div class="feature-card">
+                <h3>No Legal Expertise Needed</h3>
+                <p>Built for everyone – Legalese simplifies complex jargon into understandable language.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="metrics">
+        
+        <div class="metric-card">
+            <div class="metric-value">90+</div>
+            <div class="metric-label">Users feedback</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">70%+</div>
+            <div class="metric-label">Accuracy in functionality</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">76%+</div>
+            <div class="metric-label">Accuracy in hindi and marathi OCR</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">86%+</div>
+            <div class="metric-label">Accuracy in English OCR</div>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <div id="app-content" class="app-container">
+        <header class="app-header">
+            <h1>Legalese - Your Legal Assistant</h1>
+        </header>
+        
+        <div class="main-content">
+            <div class="container">
+                <div class="left-pane">                
+                </div>
+                <div class="right-pane">
+                    <h1>Document Analysis</h1>
+
+                    <form id="upload-form" enctype="multipart/form-data" style="margin-bottom: 20px;">
+                        <label for="language" style="display: block; margin-bottom: 5px;">Select Language:</label>
+                        <select name="language" id="language" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+                            <option value="English">English</option>
+                            <option value="Hindi">Hindi</option>
+                            <option value="Marathi">Marathi</option>
+                        </select>
+                        
+                        <label for="file" style="display: block; margin-bottom: 5px;">Upload your File here (png, jpg, pdf):</label>
+                        <input type="file" name="file" id="file" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+                        
+                        <button type="button" onclick="uploadFile()" style="width: 100%; padding: 10px; background: #4C6FFF; color: white; border: none; border-radius: 5px; cursor: pointer;">Upload</button>
+                    </form>
+
+                    <div class="buttons" style="display: flex; justify-content: space-between; margin-top: 20px;">
+                        <button type="button" id="identifyBtn" onclick="processAction('Identify')" style="flex: 1; margin: 0 5px; padding: 12px; background: #4C6FFF; color: white; border: none; border-radius: 5px; cursor: pointer;">Identify</button>
+                        <button type="button" id="keyPointsBtn" onclick="processAction('Key Points')" style="flex: 1; margin: 0 5px; padding: 12px; background: #4C6FFF; color: white; border: none; border-radius: 5px; cursor: pointer;">Key Points</button>
+                        <button type="button" id="plainLanguageBtn" onclick="processAction('Plain Language')" style="flex: 1; margin: 0 5px; padding: 12px; background: #4C6FFF; color: white; border: none; border-radius: 5px; cursor: pointer;">Plain Language</button>
+                        <button type="button" id="summaryBtn" onclick="processAction('Summary')" style="flex: 1; margin: 0 5px; padding: 12px; background: #4C6FFF; color: white; border: none; border-radius: 5px; cursor: pointer;">Summary</button>
+                    </div>
+
+                    <ul class="flashes"></ul>
+
+                    <textarea id="extracted_text" class="text-area" rows="15" readonly style="width: 100%; padding: 15px; margin-top: 20px; border: 1px solid #ddd; border-radius: 5px; resize: vertical;"></textarea>
+                
+                    <div id="results-container"></div>
+                </div>
+            </div>
+            <div class="chatbot-container">
+                <div class="chat-area" id="chat-area"></div>
+                <div class="chat-input">
+                    <input type="text" id="user-input" placeholder="Type your message...">
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="contact-info">
+            <h3>Let's get in touch!</h3>
+            <p>Got questions about Legalese or want to report bugs? Contact us for quick and friendly support.</p>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-text">+91 9167534578</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">guptanikhil8424@gmail.com</div>
+                </div>
+            </div>
+        </div>
+        <form class="contact-form">
+            <h4>Send us a message</h4>
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </section>
+
+    <footer class="landing-footer">
+        <span>© 2025 Legalese</span>
+        <span>Connect with us</span>
+    </footer>
+
+    <script>
+    // Privacy Policy Modal Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            const modal = document.getElementById('privacyModal');
+            modal.style.display = 'block';
+            document.body.classList.add('modal-active');
+            
+            // Disable all interactive elements except the accept button
+            const interactiveElements = document.querySelectorAll('button:not(.accept-button), input, select, textarea, a');
+            interactiveElements.forEach(element => {
+                element.style.pointerEvents = 'none';
+                element.style.opacity = '0.5';
+            });
+        }, 3000);
+    });
+
+    function acceptPrivacyPolicy() {
+        const modal = document.getElementById('privacyModal');
+        modal.style.display = 'none';
+        document.body.classList.remove('modal-active');
+        
+        // Re-enable all interactive elements
+        const interactiveElements = document.querySelectorAll('button, input, select, textarea, a');
+        interactiveElements.forEach(element => {
+            element.style.pointerEvents = 'auto';
+            element.style.opacity = '1';
+        });
+    }
+
+    // Remove the old theme code and keep only the smooth scroll functionality
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    function uploadFile() {
+        const form = document.getElementById('upload-form');
+        const formData = new FormData(form);
+        const fileInput = document.getElementById('file');
+        const file = fileInput.files[0];
+        
+        if (!file) {
+            alert('Please select a file first');
+            return;
+        }
+        
+        fetch('/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.error) {
+                let errorDiv = document.getElementById('results-container');
+                errorDiv.innerHTML = `<div class="result-box"><h3>Error</h3><p>${data.error}</p></div>`;
+            } else if (data.translated_text) {
+                document.getElementById('extracted_text').value = data.translated_text;
+                // Show success message
+                let successDiv = document.getElementById('results-container');
+                successDiv.innerHTML = `<div class="result-box"><h3>Success</h3><p>File uploaded and processed successfully!</p></div>`;
+            } else {
+                throw new Error('No text data received from server');
+            }
+        })
+        .catch(error => {
+            console.error('Error during upload:', error);
+            let errorDiv = document.getElementById('results-container');
+            errorDiv.innerHTML = `<div class="result-box"><h3>Error</h3><p>Error during upload: ${error.message}</p></div>`;
+        });
+    }
+
+    function processAction(action) {
+        console.log("Processing action:", action); // Debug log
+        const extractedText = document.getElementById('extracted_text').value;
+        if (!extractedText) {
+            let errorDiv = document.getElementById('results-container');
+            errorDiv.innerHTML = `<div class="result-box"><h3>Error</h3><p>Please upload a file first</p></div>`;
+            return;
+        }
+
+        // Show loading state
+        let resultsDiv = document.getElementById('results-container');
+        resultsDiv.innerHTML = `<div class="result-box"><h3>Processing...</h3><p>Please wait while we process your request...</p></div>`;
+
+        const formData = new FormData();
+        formData.append('action', action);
+        formData.append('translated_text', extractedText);
+
+        fetch('/process', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Received response:", data); // Debug log
+            let resultsDiv = document.getElementById('results-container');
+            resultsDiv.innerHTML = '';
+
+            if (data.error) {
+                resultsDiv.innerHTML = `<div class="result-box"><h3>Error</h3><p>${data.error}</p></div>`;
+                return;
+            }
+
+            if (data.action === 'Identify') {
+                resultsDiv.innerHTML = `
+                    <div class="result-box">
+                        <h3>Document Type</h3>
+                        <p>${data.document_type}</p>
+                    </div>
+                    <div class="result-box">
+                        <h3>Sections Found</h3>
+                        <p>${Array.isArray(data.sections) ? data.sections.join(', ') : data.sections}</p>
+                    </div>
+                    <div class="result-box">
+                        <h3>Keyword Counts</h3>
+                        <p>${JSON.stringify(data.keyword_counts, null, 2)}</p>
+                    </div>
+                `;
+            } else if (data.action === 'Key Points') {
+    resultsDiv.innerHTML = `
+        <div class="result-box"><h3>Title</h3><p>${data.title || 'N/A'}</p></div>
+        <div class="result-box"><h3>Parties</h3><p>${Array.isArray(data.parties) ? data.parties.join(', ') : (data.parties || 'N/A')}</p></div>
+        <div class="result-box"><h3>Effective Date</h3><p>${data.effective_date || 'N/A'}</p></div>
+        <div class="result-box"><h3>Definitions</h3><p>${data.definitions || 'N/A'}</p></div>
+        <div class="result-box"><h3>Purpose / Objective</h3><p>${data.purpose_objective || 'N/A'}</p></div>
+        <div class="result-box"><h3>Obligations / Responsibilities</h3><p>${data.obligations_responsibilities || 'N/A'}</p></div>
+        <div class="result-box"><h3>Terms & Conditions</h3><p>${data.terms_conditions || 'N/A'}</p></div>
+        <div class="result-box"><h3>Duration / Term</h3><p>${data.duration_term || 'N/A'}</p></div>
+        <div class="result-box"><h3>Termination Clause</h3><p>${data.termination_clause || 'N/A'}</p></div>
+        <div class="result-box"><h3>Confidentiality Clause</h3><p>${data.confidentiality_clause || 'N/A'}</p></div>
+        <div class="result-box"><h3>Jurisdiction / Governing Law</h3><p>${data.jurisdiction_governing_law || 'N/A'}</p></div>
+        <div class="result-box"><h3>Signatures / Witnesses</h3><p>${data.signatures_witnesses || 'N/A'}</p></div>
+        <div class="result-box"><h3>Dispute Resolution</h3><p>${data.dispute_resolution || 'N/A'}</p></div>
+        <div class="result-box"><h3>Payment Terms</h3><p>${data.payment_terms || 'N/A'}</p></div>
+        <div class="result-box"><h3>Force Majeure</h3><p>${data.force_majeure || 'N/A'}</p></div>
+        <div class="result-box"><h3>Amendments</h3><p>${data.amendments || 'N/A'}</p></div>
+        <div class="result-box"><h3>Annexures / Attachments / Schedules</h3><p>${data.annexures_attachments_schedules || 'N/A'}</p></div>
+        <div class="result-box"><h3>Legal Clauses / Boilerplate</h3><p>${data.legal_clauses_boilerplate || 'N/A'}</p></div>
+        <div class="result-box"><h3>Constitutional Articles</h3><p>${Array.isArray(data.constitutional_articles) ? data.constitutional_articles.join(', ') : (data.constitutional_articles || 'N/A')}</p></div>
+    `;
+} else if (data.action === 'Summary') {
+                resultsDiv.innerHTML = `
+                    <div class="result-box">
+                        <h3>Summary</h3>
+                        <p>${data.summary || 'No summary available'}</p>
+                    </div>
+                `;
+            } else if (data.action === 'Plain Language') {
+                resultsDiv.innerHTML = `
+                    <div class="result-box">
+                        <h3>Simplified Text</h3>
+                        <p>${data.simplified_text || 'No simplified text available'}</p>
+                    </div>
+                `;
+            }
+        })
+        .catch(error => {
+            console.error('Error during processing:', error);
+            let errorDiv = document.getElementById('results-container');
+            errorDiv.innerHTML = `<div class="result-box"><h3>Error</h3><p>Error during processing: ${error.message}</p></div>`;
+        });
+    }
+
+    function openChatbot() {
+        const modal = document.getElementById('chatbotModal');
+        modal.style.display = 'block';
+        document.body.classList.add('modal-active');
+    }
+
+    function closeChatbot() {
+        const modal = document.getElementById('chatbotModal');
+        modal.style.display = 'none';
+        document.body.classList.remove('modal-active');
+    }
+
+    function sendMessage() {
+        const userInput = document.getElementById('user-input');
+        const message = userInput.value;
+        const chatArea = document.getElementById('chat-area');
+        const extractedText = document.getElementById('extracted_text').value;
+        
+        if(message.trim() === "") {
+            return;
+        }
+        
+        // Append user message
+        chatArea.innerHTML += `<div class="message user-message">${message}</div>`;
+        
+        // Send message to server
+        fetch('/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'message=' + encodeURIComponent(message)
+        })
+        .then(response => response.json())
+        .then(data => {
+            const botResponse = data.response;
+            chatArea.innerHTML += `<div class="message bot-message">${botResponse}</div>`;
+        })
+        .catch(error => {
+            console.error("Error in chat:", error);
+            chatArea.innerHTML += `<div class="message bot-message">Error: Could not get a response.</div>`;
+        });
+        
+        userInput.value = '';
+        chatArea.scrollTop = chatArea.scrollHeight;
+    }
+
+    // Add event listener for Enter key in the modal
+    document.getElementById('user-input').addEventListener('keypress', function(event) {
+        if(event.key === "Enter") {
+            event.preventDefault();
+            sendMessage();
+        }
+    });
+    </script>
+</body>
+</html>

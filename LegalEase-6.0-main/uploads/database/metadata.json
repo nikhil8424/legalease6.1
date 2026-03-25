@@ -1,0 +1,84 @@
+{
+  "13f96d1409af85f875c47f2ca4e9097f": {
+    "source_file": "ipc.json",
+    "document_name": "Indian Penal Code (IPC)",
+    "document_type": "legal_act",
+    "language": "english",
+    "loaded_from": "legal_json_collection",
+    "doc_id": "13f96d1409af85f875c47f2ca4e9097f",
+    "chunk_count": 3,
+    "added_at": "2025-08-11T20:44:13.826734"
+  },
+  "last_updated": "2025-08-11T20:44:35.168795",
+  "total_chunks": 1389,
+  "96286426a75ab737c08efd40edd857ba": {
+    "source_file": "crpc.json",
+    "document_name": "Code of Criminal Procedure (CrPC)",
+    "document_type": "legal_act",
+    "language": "english",
+    "loaded_from": "legal_json_collection",
+    "doc_id": "96286426a75ab737c08efd40edd857ba",
+    "chunk_count": 15,
+    "added_at": "2025-08-11T20:44:14.158590"
+  },
+  "e83644d116af4707844fe45f6a2a0b63": {
+    "source_file": "cpc.json",
+    "document_name": "Code of Civil Procedure (CPC)",
+    "document_type": "legal_act",
+    "language": "english",
+    "loaded_from": "legal_json_collection",
+    "doc_id": "e83644d116af4707844fe45f6a2a0b63",
+    "chunk_count": 352,
+    "added_at": "2025-08-11T20:44:19.686002"
+  },
+  "99763c23ea00eb2ce098bf17a4a045d3": {
+    "source_file": "iea.json",
+    "document_name": "Indian Evidence Act (IEA)",
+    "document_type": "legal_act",
+    "language": "english",
+    "loaded_from": "legal_json_collection",
+    "doc_id": "99763c23ea00eb2ce098bf17a4a045d3",
+    "chunk_count": 5,
+    "added_at": "2025-08-11T20:44:19.858848"
+  },
+  "dc48b1d3f7eaba7853ce099312da3576": {
+    "source_file": "ida.json",
+    "document_name": "Indian Divorce Act (IDA)",
+    "document_type": "legal_act",
+    "language": "english",
+    "loaded_from": "legal_json_collection",
+    "doc_id": "dc48b1d3f7eaba7853ce099312da3576",
+    "chunk_count": 87,
+    "added_at": "2025-08-11T20:44:21.269164"
+  },
+  "63025cf7397650bcd94709301490ad28": {
+    "source_file": "hma.json",
+    "document_name": "Hindu Marriage Act (HMA)",
+    "document_type": "legal_act",
+    "language": "english",
+    "loaded_from": "legal_json_collection",
+    "doc_id": "63025cf7397650bcd94709301490ad28",
+    "chunk_count": 2,
+    "added_at": "2025-08-11T20:44:21.301061"
+  },
+  "6c66006358d9af6d319e6eeae4e3c39b": {
+    "source_file": "nia.json",
+    "document_name": "Narcotics and Psychotropic Substances Act (NIA)",
+    "document_type": "legal_act",
+    "language": "english",
+    "loaded_from": "legal_json_collection",
+    "doc_id": "6c66006358d9af6d319e6eeae4e3c39b",
+    "chunk_count": 5,
+    "added_at": "2025-08-11T20:44:21.484873"
+  },
+  "792fee0f34b22f3ea5b1492092d7eaea": {
+    "source_file": "MVA.json",
+    "document_name": "Motor Vehicle Act (MVA)",
+    "document_type": "legal_act",
+    "language": "english",
+    "loaded_from": "legal_json_collection",
+    "doc_id": "792fee0f34b22f3ea5b1492092d7eaea",
+    "chunk_count": 920,
+    "added_at": "2025-08-11T20:44:35.029563"
+  }
+}
